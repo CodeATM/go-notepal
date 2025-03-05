@@ -10,4 +10,7 @@ func RegisterAuthRoutes(api fiber.Router, cfg config.Config) {
 	api.Post("/auth/register", func(c *fiber.Ctx) error {
 		return service.RegisterService(c, cfg)
 	})
+	api.Post("/auth/login", func(c *fiber.Ctx) error {
+		return service.LoginService(c, cfg)
+	})
 }
