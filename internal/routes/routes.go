@@ -16,6 +16,6 @@ func SetupRoutes(app *fiber.App, cfg config.Config) {
 	// Register all routes
 	api.Get("/healthz", welcome)
 	RegisterUserRoutes(api)
-	RegisterNoteRoutes(api)
+	RegisterNoteRoutes(api, cfg)
 	RegisterAuthRoutes(api, cfg)
 }

@@ -21,7 +21,7 @@ func ErrorMiddleware() fiber.Handler {
 	}
 }
 
-func handleError(c *fiber.Ctx, err error) error { 
+func handleError(c *fiber.Ctx, err error) error {
 	// Handle application-specific errors
 	if appErr, ok := err.(*utils.AppError); ok {
 		return utils.ErrorResponse(c, appErr.StatusCode, appErr.Message, nil)

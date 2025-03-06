@@ -4,22 +4,14 @@ import (
 	"time"
 
 	"github.com/google/uuid"
-	"gorm.io/gorm"
 )
 
 type Note struct {
-	ID        uuid.UUID `gorm:"type:uuid;default:uuid_generate_v4();primaryKey"`
-	Title     string    `gorm:"not null"`
-	Content   string    `gorm:"type:text"`
-	UserID    uuid.UUID `gorm:"type:uuid;not null"`
-	CreatedAt time.Time
-	UpdatedAt time.Time
-}
-
-// BeforeCreate hook for Post
-func (p *Note) BeforeCreate(tx *gorm.DB) (err error) {
-	if p.ID == uuid.Nil {
-		p.ID = uuid.New()
-	}
-	return
+	ID        uuid.UUID `json:"id" gorm:"type:uuid;default:uuid_generate_v4()"`
+	Title     string    `json:"title"`
+	Content   string    `json:"content"`
+	UserID    uuid.UUID `json:"user_id"`
+	User      User      `json:"User" gorm:"foreignKey:UserID"`
+	CreatedAt time.Time `json:"created_at"`
+	UpdatedAt time.Time `json:"updated_at"`
 }
